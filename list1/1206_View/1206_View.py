@@ -1,5 +1,13 @@
 T = 10					# 테스트 케이스 10개
 
+# import sys
+# sys.stdin = open()
+
+# for tc in range(1, 11):   # 외부에서 데이터 읽어오기
+#     num = int(input())
+#     num_list = list(map(int, input().split()))
+
+
 for i in range(1, T+1):			# 1부터 10까지 반복
     N = int(input())		   	 # 건물 개수 입력
     sum_building = 0		  # 조망권 칸 개수
