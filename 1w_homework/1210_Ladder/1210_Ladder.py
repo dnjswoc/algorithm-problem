@@ -11,5 +11,5 @@ for test_case in range(T):
     for row in range(9, -1, -1):
         for col in range(1, 3):
             ladder_arr[row][start_index]
-            if
+            # if
     # print(f'#{test_case+1} {answer}')
