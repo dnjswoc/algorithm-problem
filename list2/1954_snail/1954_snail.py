@@ -17,12 +17,17 @@ for test_case in range(T):
     arr = list(range(1, (N**2)+1))
     empty_matrix_arr = [[0] * N for _ in range(N)]
     new_arr = matrix_arr(empty_matrix_arr, arr, N)
-    print(new_arr)
     for i in range(N):
         new_arr[i][N-1] = N+i
     for i in range(N-1, -1, -1):
-        new_arr[N-1][i] = 10 -i
-    print(new_arr)
+        new_arr[N-1][i] = 10 - i
+    for i in range(0, N-1):
+        new_arr[1][i] = 8 + i
+    print(f'#{test_case+1}')
+    for j in range(N):
+        for k in range(N):
+            print(new_arr[j][k], end=' ')
+        print()
     # print(list(range(N-1, -1, -1)))
     # print(f'#{test_case+1}')
     # print()
