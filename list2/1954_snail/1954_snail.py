@@ -1,33 +1,27 @@
+import sys
+sys.stdin = open('input.txt')
+
 T = int(input())
 
 
-def matrix_arr(empty_arr, num_arr, arr_len):
-    for i in range(arr_len):
-        for j in range(arr_len):
-            empty_arr[i][j] = num_arr[j+i*arr_len]
-    return empty_arr
+def snail_matrix():
+    di = [0, 1, 0, -1]
+    dj = [1, 0, -1, 0]
+    num = 1
+    i, j = 0, 0
+    visited = [[0] * N for _ in range(N)]
+    while num <= N**2:
+        visited[i][j] = 1
+        num_matrix[i][j] = num
+        for delta in range(4):
+            ni = i + di[delta]
+            nj = j + dj[delta]
 
-
-def snail_arr():
+        num += 1
     pass
 
 
 for test_case in range(T):
     N = int(input())
-    arr = list(range(1, (N**2)+1))
-    empty_matrix_arr = [[0] * N for _ in range(N)]
-    new_arr = matrix_arr(empty_matrix_arr, arr, N)
-    for i in range(N):
-        new_arr[i][N-1] = N+i
-    for i in range(N-1, -1, -1):
-        new_arr[N-1][i] = 10 - i
-    for i in range(0, N-1):
-        new_arr[1][i] = 8 + i
-    print(f'#{test_case+1}')
-    for j in range(N):
-        for k in range(N):
-            print(new_arr[j][k], end=' ')
-        print()
-    # print(list(range(N-1, -1, -1)))
-    # print(f'#{test_case+1}')
-    # print()
+    num_matrix = [[0] * N for _ in range(N)]
+
