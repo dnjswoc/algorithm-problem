@@ -13,6 +13,7 @@ for _ in range(10):
         if data_list[-1] == 0:
             break
     print(f'#{T}', end=' ')
-    for num in data_list:
-        print(num, end=' ')
-    print()
+    # for num in data_list:
+    #     print(num, end=' ')
+    # print()
+    print(*data_list)   # 이건 바로 가져간다...
