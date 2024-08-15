@@ -13,6 +13,7 @@ for test_case in range(T):
             for col in range(center_col - row, center_col + row + 1):   # 하나씩 커지면서 덧셈
                 farm_sum += farm_arr[row][col]
             continue
-        for col in range(center_col - (N - row - 1), center_col + (N - row)): # 기준 값 넘어서면
+        # for col in range(center_col - (N - row - 1), center_col + (N - row)): # 기준 값 넘어서면
+        for col in range(row - center_col, N - (row - center_col)):
             farm_sum += farm_arr[row][col]  # 하나씩 감소하며 덧셈
     print(f'#{test_case+1} {farm_sum}')
