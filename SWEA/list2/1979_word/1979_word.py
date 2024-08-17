@@ -12,12 +12,12 @@ for test_case in range(T):
     for row in range(N):    # 행 단위로 검색
         check_arr_r = []
         for col in range(N):
-            if puzzle_arr[row][col]:
-                check_arr_r.append(puzzle_arr[row][col])
-            elif not puzzle_arr[row][col]:
-                check_arr.append(check_arr_r)
-                check_arr_r = []
-        check_arr.append(check_arr_r)
+            if puzzle_arr[row][col]:    # 행렬의 값이 1이라면
+                check_arr_r.append(puzzle_arr[row][col])    # 리스트에 저장
+            elif not puzzle_arr[row][col]:  # 0이라면
+                check_arr.append(check_arr_r)   # 1을 저장했던 리스트를 단어가 들어갈 수 있는 check_arr 리스트에 넣고
+                check_arr_r = []        # check_arr_r 리스트를 초기화
+        check_arr.append(check_arr_r)   # 열에 대한 순회가 끝나면 마지막까지 check_arr_r 리스트에 저장된 값을 check_arr 리스트에 저장
     for col in range(N):    # 열 단위로 검색
         check_arr_c = []
         for row in range(N):
