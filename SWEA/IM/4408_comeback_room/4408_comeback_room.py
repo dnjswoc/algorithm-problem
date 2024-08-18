@@ -28,3 +28,4 @@ for test_case in range(T):
             room_arr[j], room_arr[j + 1] = room_arr[j + 1], room_arr[j]
 
     print(f'#{test_case + 1} {room_arr[-1]}')
+
