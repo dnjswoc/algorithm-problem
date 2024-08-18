@@ -29,3 +29,4 @@ for test_case in range(T):
                 if max_relic < count_relic:
                     max_relic = count_relic
     print(f'#{test_case+1} {max_relic}')
+
