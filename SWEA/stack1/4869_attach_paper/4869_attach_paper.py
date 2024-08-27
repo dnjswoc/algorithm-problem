@@ -1,4 +1,4 @@
-# 22:10 -
+# 22:10 - 23:10
 import sys
 sys.stdin = open('input.txt', 'r')
 
