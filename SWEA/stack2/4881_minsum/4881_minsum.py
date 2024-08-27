@@ -37,5 +37,4 @@ for test_case in range(T):
     visited = [[0] * N for _ in range(N)]
     sum_matrix = []
     find_combination(0, num_matrix, visited, sum_matrix)
-    print(sum_matrix)
-    # print(f'#{test_case + 1} {min(sum_matrix)}')
+    print(f'#{test_case + 1} {min(sum_matrix)}')
