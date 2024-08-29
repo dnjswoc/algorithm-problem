@@ -54,6 +54,3 @@ for test_case in range(T):
         split_arr[i - 1] = password_arr[7 * (i - 1):7 * i]
 
     print(f'#{test_case+1} {check_password(split_arr)}')
-
-
-
