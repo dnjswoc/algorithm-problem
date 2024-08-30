@@ -17,3 +17,16 @@ for k in range(N - K):  # seq_temp_arr 리스트의 최댓값을 구하기 위�
         seq_temp_arr[k], seq_temp_arr[k + 1] = seq_temp_arr[k + 1], seq_temp_arr[k]
 
 print(seq_temp_arr[-1])
+
+# 건수 방법법
+N, K = map(int, input().split())
+num_lst = list(map(int, input().split()))
+current_sum = sum(num_lst[0:K])
+max_sum = current_sum
+
+for i in range(N - K):
+    current_sum = current_sum - num_lst[i] + num_lst[i + K]
+    if max_sum <= current_sum:
+        max_sum = current_sum
+
+print(max_sum)
