@@ -1,5 +1,6 @@
 # import sys
-# sys.stdin = open('input.txt', 'r')
+# sys.stdin = open('input_1.txt', 'r')
+# sys.stdout = open('output_1.txt', 'w')
 
 T = int(input())
 
@@ -35,3 +36,62 @@ for test_case in range(1, T + 1):
             if cnt >= 2:    # 연속적인 채로 끝나면
                 answer += cnt   # answer에 추가
     print(f'#{test_case} {answer}')
+
+
+# 나영
+def remove_repeat_ch(password):
+    score = 0
+    stack = []
+    cnt = 1
+    for ch in password:
+        if not stack or stack[-1][0] != ch:
+            cnt = 1
+            stack.append([ch, cnt])
+        else:
+            stack[-1][1] += cnt
+
+    # [['X', 1], ['A', 2], ['Y', 1], ['B', 3], ['C', 1], ['D', 2], ['C', 1], ['Z', 1], ['D', 1]]
+
+    word = ''
+    for li in stack:
+        if li[-1] >= 2:
+            score += li[-1]
+        else:
+            word += li[0]
+
+    return score, word  # (7, 'XYCCZD')
+
+
+def continuous_password(password):  # 연속문자 탐색하는 악질함수
+    cnt = 1
+    total = 0
+
+    res = list(map(lambda ch: ord(ch), password))  # ord 문자열을 숫자로 바꿔주는 내장함수
+
+    for i in range(1, len(res)):
+        if res[i] == res[i - 1] + 1:  # 연속인지 알아보기 위함
+            cnt += 1
+        else:
+            if cnt > 1:
+                total += cnt
+                cnt = 1
+    else:
+        if cnt > 1:  # 하... 할말하않 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+            total += cnt
+
+    return total
+
+
+T = int(input())
+
+for case in range(1, T + 1):
+    password = input()  # XAAYBBBCDDCZD
+    ans = 0
+
+    while True:
+        score, password = remove_repeat_ch(password)
+        ans += score  # 전체 점수
+        if score == 0:  # 점수가 0이란건 repeat되는게 없다는 뜻 반복문 탈출
+            break
+
+    print(f'#{case} {ans + continuous_password(password)}')
