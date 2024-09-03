@@ -1,7 +1,7 @@
 # 00:00 - 01:20
 from collections import deque
 import sys
-# sys.stdin = open('input.txt', 'r')
+sys.stdin = open('input.txt', 'r')
 
 '''
 연락이 가는 데 가장 시간이 오래 걸린 노드를 구하는 문제라서 BFS를 쓰면 되겠다고 생각했습니다.
@@ -49,9 +49,9 @@ for test_case in range(1, T + 1):
         v1, v2 = contact_arr[i * 2], contact_arr[i * 2 + 1]
         if v2 not in adjL[v1]:  # 간선 정보를 기록한 적이 없으면
             adjL[v1].append(v2)  # 인접리스트에 기록 ex) adjL = [[], [], [7, 15], [], ... , [7, 8, 17]]
-    print(adjL)
+    # print(adjL)
     contact(S)  # 입력 받은 시적 지점을 함수에 넘겨준다
-    print(times)
+    # print(times)
     for i in range(N + 1):
         # 가장 많이 걸린 시간의 인덱스를 구하는데 같은 값이 있으면 가장 큰 인덱스가 나오면 되므로 break를 걸지 않는다.
         if times[i] == max(times):
