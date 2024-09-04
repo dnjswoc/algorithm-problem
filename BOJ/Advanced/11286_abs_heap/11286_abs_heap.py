@@ -24,8 +24,11 @@ def deq():
     p = 1
     c = p * 2
     while c <= last:
-        if c + 1 <= last and h[c] > h[c + 1] and abs(h[c]) >= abs(h[c + 1]):
-            c += 1
+        if c + 1 <= last and abs(h[c]) >= abs(h[c + 1]):
+            if abs(h[c]) == abs(h[c + 1]) and h[c] < h[c + 1]:
+                c = c
+            else:
+                c += 1
         if abs(h[p]) >= abs(h[c]):
             if abs(h[p]) == abs(h[c]) and h[p] < h[c]:
                 continue
