@@ -43,3 +43,48 @@ for test_case in range(T):
                 # cnt_instance.cnt
     maze_check(start_idx_row, start_idx_col, visited)   # 미로가 성립하는지 함수로 확인
     print(f'#{test_case+1} {result}')               # 함수 결과 출력
+
+
+# 진문님 풀이
+'''
+출발지에서 목적지에 도착하는 경로가 존재하는지 확인하는 프로그램을 작성하시오. 도착할 수 있으면 1, 아니면 0을 출력한다.
+0은 통로, 1은 벽, 2는 출발, 3은 도착이다.
+'''
+def is_maze_breaker(row,col):
+    dxy = [[0,-1],[-1,0],[0,1],[1,0]] # 좌 / 상 / 우 / 하
+    stack.append((row,col))
+    v[row][col] = 1
+    while stack:
+        for dx,dy in dxy:
+            nx = row + dx
+            ny = col + dy
+            # 인덱스 에러 방지
+            if nx < 0 or ny < 0 or nx >= N or ny >= N: continue
+            # 미로의 벽인지 판단
+            if maze[nx][ny] == '1': continue
+            # 방문여부 확인
+            if v[nx][ny] == 1: continue
+            if maze[nx][ny] == '3':
+                return 1
+            # 인덱스 에러 발생하지 않고 벽으로 막혀있지도 않은 경우 / 방문하지 않은 곳이라면
+            # 방문하고
+            # row,col = nx,ny
+            # 방문기록을 남기고
+            v[row][col] = 1
+            # 뒤로 가기 위해 스택 저장
+            stack.append((nx,ny))
+            # break
+        else:
+            row,col = stack.pop()
+    return 0
+
+T = int(input())
+for tc in range(1,T+1):
+    N = int(input())
+    maze = [input() for _ in range(N)] # 0은 통로, 1은 벽, 2는 출발, 3은 도착이다.
+    v = [[0]*N for _ in range(N)]
+    stack = []
+    for i in range(N):
+        for j in range(N):
+            if maze[i][j] == '2':
+                print(f'#{tc} {is_maze_breaker(i,j)}')
