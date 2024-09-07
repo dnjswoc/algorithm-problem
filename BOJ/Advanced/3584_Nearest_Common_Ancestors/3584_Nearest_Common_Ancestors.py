@@ -11,38 +11,38 @@ ex. 16, 7
 따라서 이 예시에서는 답이 4가 됩니다.
 '''
 
-# T = int(input())
-#
-#
-# def check_ancestor(arr):    # 노드들의 가장 가까운 공통된 조상 노드를 찾는 함수
-#     # node_anc = [[16, 10, 4, 8], [7, 6, 4, 8]]에서
-#     # 0번 리스트의 값 하나를 1번 리스트의 값들과 비교하여 가장 먼저 일치하는 노드를 return
-#     # 16과 [7, 6, 4, 8]을 비교 ... 4와 [7, 6, 4, 8]을 비교 -> 4 return
-#     for i in arr[0]:
-#         for j in arr[1]:
-#             if i == j:
-#                 return i
-#
-#
-# for test_case in range(T):
-#     N = int(input())
-#     edge_arr = [list(map(int, input().split())) for _ in range(N - 1)]  # 간선 정보
-#     target_node = list(map(int, input().split()))   # 공통된 조상 노드를 찾을 노드들 ex. 16, 7
-#     node_anc = []   # 노드들의 조상 노드를 기록할 리스트
-#
-#     for node in target_node:    # 공통된 조상 노드를 찾을 노드를 반복하며 ex. 16, 7
-#         anc_arr = [node]    # 노드 자기 자신을 포함한 리스트를 만든다 anc_arr = [16]
-#         while node > 0:     # 조상 노드가 안 나올 때까지 반복
-#             for arr in edge_arr:    # 간선 정보를 반복하며
-#                 if node == arr[1]:  # 타겟 노드가 자식노드이면 ex. 16 -> [10, 16]
-#                     node = arr[0]   # node를 타겟 노드의 부모 노드로 재할당 node = 10
-#                     anc_arr.append(arr[0])  # 리스트에 부모 노드를 저장 ex. anc_arr = [16, 10]
-#                     break   # 반복문 탈출
-#             else:   # 반복문을 다 도는 동안 부모 노드가 나오지 않는다면(루트 노드까지 갔다면)
-#                 node = 0    # node를 0으로 만들어 while문이 끝나게 만든다.
-#         node_anc.append(anc_arr)    # 조상 노드들을 기록한 리스트를 node_anc 리스트에 저장
-#     # node_anc = [[16, 10, 4, 8], [7, 6, 4, 8]]
-#     print(check_ancestor(node_anc))  # 가장 먼저 공통된 조상 노드를 출력
+T = int(input())
+
+
+def check_ancestor(arr):    # 노드들의 가장 가까운 공통된 조상 노드를 찾는 함수
+    # node_anc = [[16, 10, 4, 8], [7, 6, 4, 8]]에서
+    # 0번 리스트의 값 하나를 1번 리스트의 값들과 비교하여 가장 먼저 일치하는 노드를 return
+    # 16과 [7, 6, 4, 8]을 비교 ... 4와 [7, 6, 4, 8]을 비교 -> 4 return
+    for i in arr[0]:
+        for j in arr[1]:
+            if i == j:
+                return i
+
+
+for test_case in range(T):
+    N = int(input())
+    edge_arr = [list(map(int, input().split())) for _ in range(N - 1)]  # 간선 정보
+    target_node = list(map(int, input().split()))   # 공통된 조상 노드를 찾을 노드들 ex. 16, 7
+    node_anc = []   # 노드들의 조상 노드를 기록할 리스트
+
+    for node in target_node:    # 공통된 조상 노드를 찾을 노드를 반복하며 ex. 16, 7
+        anc_arr = [node]    # 노드 자기 자신을 포함한 리스트를 만든다 anc_arr = [16]
+        while node > 0:     # 조상 노드가 안 나올 때까지 반복
+            for arr in edge_arr:    # 간선 정보를 반복하며
+                if node == arr[1]:  # 타겟 노드가 자식노드이면 ex. 16 -> [10, 16]
+                    node = arr[0]   # node를 타겟 노드의 부모 노드로 재할당 node = 10
+                    anc_arr.append(arr[0])  # 리스트에 부모 노드를 저장 ex. anc_arr = [16, 10]
+                    break   # 반복문 탈출
+            else:   # 반복문을 다 도는 동안 부모 노드가 나오지 않는다면(루트 노드까지 갔다면)
+                node = 0    # node를 0으로 만들어 while문이 끝나게 만든다.
+        node_anc.append(anc_arr)    # 조상 노드들을 기록한 리스트를 node_anc 리스트에 저장
+    # node_anc = [[16, 10, 4, 8], [7, 6, 4, 8]]
+    print(check_ancestor(node_anc))  # 가장 먼저 공통된 조상 노드를 출력
 
 
 # 나영 코드
