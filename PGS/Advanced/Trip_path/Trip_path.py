@@ -64,54 +64,54 @@ def solution(tickets):
 
 
 print(solution([["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]))
-print(solution([["SFO", "ATL"], ["ICN", "SFO"], ["ICN", "ATL"], ["ATL", "ICN"], ["ATL", "SFO"]]))
-print(solution([["ICN", "AAA"], ["DDD", "ICN"], ["ICN", "DDD"]]))
-print(solution([["ICN", "AAA"], ["AAA", "ICN"], ["ICN", "CCC"], ["CCC", "ICN"], ["ICN", "DDD"], ["DDD", "AAA"]]))
-print(solution([["ICN", "BBB"], ["BBB", "ICN"], ["ICN", "AAA"]]))
-
-
-# 나영이 코드
-def solution(tickets):
-    def dfs(start, ans):
-
-        for i in range(len(road_dict[start])):
-            if road_dict[start][i] not in road_dict.keys():
-                ans.append(road_dict[start][i])
-                return
-            if visited[start][i]:   # 사용한 항공편이라면 continue
-                continue
-            visited[start][i] = 1   # 아니라면 방문 표시
-            ans.append(road_dict[start][i])
-            dfs(road_dict[start][i], ans)
-
-    visited = {}
-    for s, v in tickets:
-        if s in visited:
-            visited[s].append(0)
-        else:
-            visited[s] = [0]
-    print(visited)
-
-    ans = []
-    start = "ICN"
-    road_dict = {}  # {'ICN': ['JFK'], 'HND': ['IAD'], 'JFK': ['HND']}
-
-    for s, v in tickets:
-        if s in road_dict:
-            road_dict[s].append(v)
-        else:
-            road_dict[s] = [v]
-
-    for key in road_dict.keys():  # 문제에서 만일 가능한 경로가 2개 이상일 경우 알파벳 순서가 앞서는 경로 return 위해 sort작업처리
-        road_dict[key].sort()
-    # {'ICN': ['ATL', 'SFO'], 'SFO': ['ATL'], 'ATL': ['ICN', 'SFO']}
-
-    ans.append(start)  # 인천 출발
-
-    dfs(start, ans)
-
-    return ans
-
-
-print(solution([["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]))
 # print(solution([["SFO", "ATL"], ["ICN", "SFO"], ["ICN", "ATL"], ["ATL", "ICN"], ["ATL", "SFO"]]))
+# print(solution([["ICN", "AAA"], ["DDD", "ICN"], ["ICN", "DDD"]]))
+# print(solution([["ICN", "AAA"], ["AAA", "ICN"], ["ICN", "CCC"], ["CCC", "ICN"], ["ICN", "DDD"], ["DDD", "AAA"]]))
+# print(solution([["ICN", "BBB"], ["BBB", "ICN"], ["ICN", "AAA"]]))
+
+
+# # 나영이 코드
+# def solution(tickets):
+#     def dfs(start, ans):
+#
+#         for i in range(len(road_dict[start])):
+#             if road_dict[start][i] not in road_dict.keys():
+#                 ans.append(road_dict[start][i])
+#                 return
+#             if visited[start][i]:   # 사용한 항공편이라면 continue
+#                 continue
+#             visited[start][i] = 1   # 아니라면 방문 표시
+#             ans.append(road_dict[start][i])
+#             dfs(road_dict[start][i], ans)
+#
+#     visited = {}
+#     for s, v in tickets:
+#         if s in visited:
+#             visited[s].append(0)
+#         else:
+#             visited[s] = [0]
+#     print(visited)
+#
+#     ans = []
+#     start = "ICN"
+#     road_dict = {}  # {'ICN': ['JFK'], 'HND': ['IAD'], 'JFK': ['HND']}
+#
+#     for s, v in tickets:
+#         if s in road_dict:
+#             road_dict[s].append(v)
+#         else:
+#             road_dict[s] = [v]
+#
+#     for key in road_dict.keys():  # 문제에서 만일 가능한 경로가 2개 이상일 경우 알파벳 순서가 앞서는 경로 return 위해 sort작업처리
+#         road_dict[key].sort()
+#     # {'ICN': ['ATL', 'SFO'], 'SFO': ['ATL'], 'ATL': ['ICN', 'SFO']}
+#
+#     ans.append(start)  # 인천 출발
+#
+#     dfs(start, ans)
+#
+#     return ans
+#
+#
+# print(solution([["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]))
+# # print(solution([["SFO", "ATL"], ["ICN", "SFO"], ["ICN", "ATL"], ["ATL", "ICN"], ["ATL", "SFO"]]))

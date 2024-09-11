@@ -1,9 +1,13 @@
+"""
+
+"""
+
 from collections import deque
 
 
 def solution(begin, target, words):
     answer = 0
-    word_dict = {}
+    word_dict = {}  #
     words.append(begin)
     N = len(words)
 
