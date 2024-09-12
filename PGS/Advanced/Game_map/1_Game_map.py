@@ -34,9 +34,12 @@ def solution(maps):
     N = len(maps)   # 행 길이
     M = len(maps[0])    # 열 길이
     visited = [[0] * M for _ in range(N)]
+
     answer = shortest_path(0, 0, visited, maps, N, M)
+
     if answer == 0:  # 도착점까지 최소 거리가 0이면(도착점에 도달하지 못하면)
         answer = -1  # -1 출력
+
     return answer
 
 
