@@ -63,7 +63,7 @@ def solution(tickets):
     return answer
 
 
-print(solution([["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]))
+# print(solution([["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]]))
 # print(solution([["SFO", "ATL"], ["ICN", "SFO"], ["ICN", "ATL"], ["ATL", "ICN"], ["ATL", "SFO"]]))
 # print(solution([["ICN", "AAA"], ["DDD", "ICN"], ["ICN", "DDD"]]))
 # print(solution([["ICN", "AAA"], ["AAA", "ICN"], ["ICN", "CCC"], ["CCC", "ICN"], ["ICN", "DDD"], ["DDD", "AAA"]]))
