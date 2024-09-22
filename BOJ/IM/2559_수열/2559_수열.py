@@ -18,7 +18,7 @@ for k in range(N - K):  # seq_temp_arr 리스트의 최댓값을 구하기 위�
 
 print(seq_temp_arr[-1])
 
-# 건수 방법법
+# 건수 방법
 N, K = map(int, input().split())
 num_lst = list(map(int, input().split()))
 current_sum = sum(num_lst[0:K])
