@@ -10,6 +10,7 @@ print(student_score)
 
 # 강사님 점수
 t_score = int(S * (P/100))
+print(t_score)
 # 강사님 점수 자릿수
 t_score_length = len(str(t_score))
 
@@ -40,6 +41,7 @@ for i in range(N):
     # 순열 구하기
     nPr = list(permutations(split_score, 3))
     min_diff = 1000
+    print(nPr)
 
     # 강사님 점수와 가장 적은 점수 차이 구하기
     for num in nPr:
@@ -50,20 +52,13 @@ for i in range(N):
                 min_diff = abs(t_score - case)
 
     # 각 팀별 최소 점수 차이를 리스트에 저장
-    diff.append([i +1, min_diff])
+    diff.append([i +1, min_diff, current_score[i + 1]])
 
-diff = sorted(diff, key=lambda x:x[1])
+# x[1] : 점수차, -x[2] : 원점수 내림차순, x[0] : 제출순으로 정렬
+diff = sorted(diff, key=lambda x:(x[1], -x[2], x[0]))
 print(diff)
-print(current_score)
 
-for i in range(N - 1):
-    for j in range(i + 1, N):
-        if diff[i][1] != diff[j][1]: continue
-        if current_score[diff[i][0]] < current_score[diff[j][0]]:
-            diff[i], diff[j] = diff[j], diff[i]
 
 for i in range(N):
     print(f'{i + 1}등: {student_score[(diff[i][0] - 1) * 2][-1]} {student_score[(diff[i][0] - 1) * 2 + 1][-1]} ({diff[i][0]} 팀)'
-          f' | 점수 차 : {diff[i][1]} | 원점수: {current_score[diff[i][0]]}')
-
-
+          f' | 점수 차 : {diff[i][1]} | 원점수: {diff[i][2]}')
