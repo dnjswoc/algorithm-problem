@@ -1,4 +1,5 @@
 from libs._bridge import init, submit, close
+from collections import deque
 
 NICKNAME = '기본코드'
 game_data = init(NICKNAME)
@@ -56,6 +57,50 @@ def parse_data(game_data):
     for i in range(row_index, row_index + num_of_codes):
         codes.append(game_data_rows[i])
 
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+direction_mapping = ['U', 'R', 'D', 'L']
+
+def bfs(my_position, target_position, K):
+    visited = [[[[False] * (K + 1) for _ in range(4)] for _ in range(N)] for _ in range(N)]
+    print(visited)
+    q = deque()
+    x, y = my_position
+    q.append((x, y, 0, 0, K, []))
+    visited[x][y][0][K] = True
+
+    while q:
+        x, y, dir, moves, cnt, path = q.popleft()
+        nx = x + dx[dir]
+        ny = y + dy[dir]
+
+        if [nx, ny] == target_position:
+            path.append((direction_mapping[dir], (nx, ny), 'F'))  # 목적지 도달 시 'F' 추가
+            return path
+
+        if 0 <= nx < N and 0 <= ny < N:
+            if map_data[nx][ny] == 'G' and not visited[nx][ny][dir][cnt]:
+                visited[nx][ny][dir][cnt] = True
+                q.append((nx, ny, dir, moves + 1, cnt, path + [(direction_mapping[dir], (nx, ny), 'A')]))  # 'A' 추가
+
+
+            # 이 부분은 빼도 똑같이 작동한다고 하더라
+            elif map_data[nx][ny] == 'X' and cnt > 0 and not visited[nx][ny][dir][cnt - 1]:
+                visited[nx][ny][dir][cnt - 1] = True
+                q.append((nx, ny, dir, moves + 1, cnt - 1, path + [(direction_mapping[dir], (nx, ny), 'A')]))  # 'A' 추가
+
+        nd = (dir - 1) % 4
+        if not visited[x][y][nd][cnt]:
+            visited[x][y][nd][cnt] = True
+            q.append((x, y, nd, moves + 1, cnt, path))
+
+        nd = (dir + 1) % 4
+        if not visited[x][y][nd][cnt]:
+            visited[x][y][nd][cnt] = True
+            q.append((x, y, nd, moves + 1, cnt, path))
+
+    return []
+
 # while 반복문: 배틀싸피 메인 프로그램과 클라이언트(이 코드)가 데이터를 계속해서 주고받는 부분
 while game_data is not None:
     # 자기 차례가 되어 받은 게임정보를 파싱
@@ -99,10 +144,9 @@ while game_data is not None:
     for i in range(len(map_data)):
         for j in range(len(map_data[0])):
             if map_data[i][j] == 'A':
-                my_position[0] = i
-                my_position[1] = j
-                break
-        if my_position[0] > 0: break
+                my_position = [i, j]
+            elif map_data[i][j] == 'X':
+                target_position = [i, j]
 
     if my_position[0] < len(map_data) - 1 and map_data[my_position[0] + 1][my_position[1]] == 'G':
         output = 'D A'
@@ -117,3 +161,29 @@ while game_data is not None:
 
 # 반복문을 빠져나왔을 때 배틀싸피 메인 프로그램과의 연결을 완전히 해제하기 위해 close 함수 호출
 close()
+
+
+
+
+
+
+
+
+
+T = int(input())
+for tc in range(1, T + 1):
+    N, K = map(int, input().split())
+    map_data = [list(input().split()) for _ in range(N)]
+
+    for x in range(N):
+        for y in range(N):
+            if map_data[x][y] == 'A':
+                my_position = [x, y]
+
+
+    path = bfs(my_position, target_position, K)
+
+    print(f'#{tc} {len(path)}')
+    print(path)
+    for command, position, action in path:
+        print(f'{command} {action} {position}')  # action에 따라 'A' 또는 'F' 출력
